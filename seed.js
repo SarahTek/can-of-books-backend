@@ -13,7 +13,7 @@ async function seedBooks() {
   await BookModel.create({
     title: 'How Far You Have Come',
     description: 'exquisite collection of poetry and essays from best-selling artist and writer Morgan Harper Nichols. In the midst of the hurt and the mundane, the questions and the not yets, you can forget just how far you have come. Morgan weaves together personal reflections with her signature poems, encouraging you to reclaim moments of brokenness, division, and pain and re-envision them as experiences of reconciliation, unity, and hope',
-    status: '100 Stars'
+    status: 'FAVOURITE FIVE'
   });
 
   await BookModel.create({
