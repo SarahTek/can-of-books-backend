@@ -14,9 +14,9 @@ Clone this repo to your own account with the green "Use this template" button. T
 
 
 
-# Project Name
+# Can Of Books
 
-**Author**: Team Member Names Goes Here
+**Author**: Sarah and Tanesha
 **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
@@ -42,12 +42,11 @@ Clone this repo to your own account with the green "Use this template" button. T
 
 
 
-Name of feature: ________________________________
+## Name of feature: Can of Books
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 2 hours
+Start time: 6:30
 
-Start time: _____
+Finish time: 9:00
 
-Finish time: _____
-
-Actual time needed to complete: _____
+Actual time needed to complete: 2 and half hours
