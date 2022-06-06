@@ -3,11 +3,12 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const getBooks = require('./modules/handlers');
+const Handler = require('./modules/handlers');
 
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 const PORT = process.env.PORT || 3002;
 
@@ -20,7 +21,8 @@ db.once('open', function () {
   console.log('Mongoose is connected')
 });
 
-app.get('/books', getBooks);
+app.get('/books', Handler.getBooks);
+app.post('/books', Handler.createBook)
 app.get('/test', (request, response) => {
   response.send('test request received');
 });
