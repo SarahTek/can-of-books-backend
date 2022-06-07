@@ -26,4 +26,20 @@ const Handlers = {};
     next(error);
    }
  }
+
+ Handlers.deleteBook = async ( request, response, next) => {
+  try{
+ await BookModel.findByIdAndDelete(request.params.id);
+   response.status(204);
+
+  }catch(error){
+    error.customMessage = 'something went wrong when deleting a book:';
+   console.error(error.customMessage + error);
+   next(error);
+  }
+}
+
+
+
+
  module.exports = Handlers;

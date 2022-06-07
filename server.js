@@ -23,6 +23,7 @@ db.once('open', function () {
 
 app.get('/books', Handler.getBooks);
 app.post('/books', Handler.createBook)
+app.delete('./books/:id',Handler.deleteBook);
 app.get('/test', (request, response) => {
   response.send('test request received');
 });
