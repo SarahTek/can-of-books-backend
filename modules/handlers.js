@@ -42,6 +42,7 @@ Handlers.deleteBook = async (request, response, next) => {
 
 
 Handlers.updateBook = async (request, response, next) => {
+  console.log(response.body);
   try {
     const updatedBook = await BookModel.findByIdAndUpdate(request.params.id, request.body, { new: true });
     response.status(200).send(updatedBook);
