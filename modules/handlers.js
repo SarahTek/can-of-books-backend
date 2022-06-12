@@ -1,13 +1,10 @@
 'use strict';
-
-
 const BookModel = require('../models/book');
-
 const Handlers = {};
 
 Handlers.getBooks = async (request, response, next) => {
   try {
-    const books = await BookModel.find({});
+    const books = await BookModel.find({ email: request.user.email });
     response.status(200).send(books);
 
   } catch (error) {
@@ -18,7 +15,7 @@ Handlers.getBooks = async (request, response, next) => {
 
 Handlers.createBook = async (request, response, next) => {
   try {
-    const newBook = await BookModel.create(request.body);
+    const newBook = await BookModel.create({...request.body, email: request.user.email } );
     response.status(201).send(newBook);
 
   } catch (error) {
@@ -30,8 +27,13 @@ Handlers.createBook = async (request, response, next) => {
 
 Handlers.deleteBook = async (request, response, next) => {
   try {
-    await BookModel.findByIdAndDelete(request.params.id);
-    response.status(204);
+    const bookToBeDeleted = await BookModel.findOne({ _id: request.params.id, email: request.user.email });
+    if (!bookToBeDeleted) {
+      response.status(404).send('unable to find that book to be deleted');
+    }else {
+      await BookModel.findByIdAndDelete(request.params.id);
+      response.status(204);
+    }
 
   } catch (error) {
     error.customMessage = 'something went wrong when deleting a book: ';
@@ -44,9 +46,13 @@ Handlers.deleteBook = async (request, response, next) => {
 Handlers.updateBook = async (request, response, next) => {
   console.log(response.body);
   try {
-    const updatedBook = await BookModel.findByIdAndUpdate(request.params.id, request.body, { new: true });
+    const bookToBeUpdated = await BookModel.findOne({ _id: request.params.id, email: request.user.email });
+    if (!bookToBeUpdated) {
+      response.status(404).send('unable to find that book to be updated');
+  }else{
+    const updatedBook = await BookModel.findByIdAndUpdate(request.params.id, {...request.body, email: request.user.email}, { new: true });
     response.status(200).send(updatedBook);
-
+    }
   } catch (error) {
     error.customMessage = 'something went wrong when updating a book: ';
     console.error(error.customMessage + error);
@@ -54,7 +60,9 @@ Handlers.updateBook = async (request, response, next) => {
   }
 }
 
-
-
+Handlers.handleGetUser = async (req, res) => {
+  console.log('Getting the user');
+  res.send(req.user);
+};
 
 module.exports = Handlers;

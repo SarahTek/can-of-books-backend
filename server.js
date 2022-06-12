@@ -28,7 +28,7 @@ app.get('/books', Handler.getBooks);
 app.post('/books', Handler.createBook);
 app.delete('/books/:id',Handler.deleteBook);
 app.put('/books/:id',Handler.updateBook);
-app.get('/user', handleGetUser);
+app.get('/user', Handler.handleGetUser);
 
 app.get('/test', (request, response) => {
   response.send('test request received');
@@ -37,11 +37,6 @@ app.get('/test', (request, response) => {
 app.use((error, request, response, next) => {
   response.status(500).send(`call the devs!... ${error.message}`);
 });
-
-function handleGetUser(req, res) {
-  console.log('Getting the user');
-  res.send(req.user);
-};
 
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
