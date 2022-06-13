@@ -4,7 +4,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 mongoose.connect(process.env.DATABASE_URL);
 
-const Book = require('./book.js');
+const Book = require('./models/book.js');
 
 async function clear() {
   try {
