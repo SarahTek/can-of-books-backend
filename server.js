@@ -4,7 +4,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const Handler = require('./modules/handlers.js');
-const verifyUser = require('./auth.js');
+const verifyUser = require('./auth');
 
 
 const app = express();
